@@ -1,0 +1,29 @@
+int trig = 7;
+int echo = 8;
+int led = 13;
+int tiempo;
+int distancia;
+
+void setup()
+{
+  pinMode(led, OUTPUT);
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
+}
+
+void loop()
+{
+  digitalWrite(trig, HIGH);
+  delay(1);
+  digitalWrite(trig, LOW);
+  tiempo= pulseIn(echo, HIGH);
+  distancia = tiempo / 58.2;
+  
+  if (distancia < 50) 
+  	{
+    digitalWrite(led, HIGH);
+  	}
+  else
+  	{
+    digitalWrite(led, LOW);
+  	}

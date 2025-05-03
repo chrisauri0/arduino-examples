@@ -1,0 +1,21 @@
+const int sensorMin=456;
+const int sensorMax=12;
+int valormapeado=0;
+int LED=3;
+
+void setup(){
+  Serial.begin (9600);
+}
+void loop(){
+  int sensorReading = analogRead (A0);
+  valormapeado =map (sensorReading, sensorMax, sensorMin, 0,225);
+   if(sensorReading<=456){
+  analogWrite (LED, valormapeado);
+  Serial.println (sensorReading);
+}
+else{
+  analogWrite (LED, LOW);
+  
+}
+delay(1);
+}

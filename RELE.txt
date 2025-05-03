@@ -1,0 +1,18 @@
+int SENSOR =0;
+int RELE = 3;
+int INTENSIDAD;
+
+void setup() {
+  pinMode (RELE , OUTPUT);
+
+}
+
+void loop() {
+  INTENSIDAD =analogRead (SENSOR);
+  if (INTENSIDAD<200){
+    digitalWrite (RELE, 1);
+    delay (1000);
+  }
+  digitalWrite(RELE,0);
+
+}

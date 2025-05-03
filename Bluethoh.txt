@@ -1,0 +1,25 @@
+
+#include <SoftwareSerial.h>
+
+SoftwareSerial MiBT(10,11);
+char DATO=0;
+int LEDROJO=2;
+int LEDAZUL=3;
+
+void setup(){
+  MiBT.begin (38400);
+  pinMode(LEDROJO, OUTPUT);
+  pinMode(LEDAZUL, OUTPUT);
+}
+
+void loop(){
+  if(MiBT. available()){
+    DATO=MiBT.read();
+    if(DATO=='1')
+    digitalWrite(LEDROJO,!digitalRead(LEDROJO));
+
+    if(DATO=='2')
+    digitalWrite(LEDAZUL,!digitalRead(LEDAZUL));
+
+  }
+}

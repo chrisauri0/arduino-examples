@@ -1,0 +1,45 @@
+#include <SoftwareSerial.h>
+SoftwareSerial bt (10,11);
+int Sensor=A0;
+int temp;
+float temperatura;
+char DATO=0;
+int ledrojo= 13;
+int ledverde=3;
+int sensorhumedad=4;
+float suma;
+
+void setup(){
+  bt.begin(38400);
+  pinMode (ledrojo, OUTPUT);
+  pinMode (ledverde, OUTPUT);
+  pinMode (sensorhumedad, INPUT);
+  Serial.begin (9600);
+}
+void loop(){
+  if (bt.available()){
+    DATO=bt.read();
+    if(DATO=='1')
+    digitalWrite(ledverde,1);
+
+    if(DATO=='2')
+    digitalWrite(ledverde,0);
+
+    if(DATO=='3')
+    digitalWrite(ledrojo, 1);
+
+    if(DATO=='4')
+    digitalWrite(ledrojo, 0);
+    }
+
+   suma=0;
+   if(DATO=='1'){
+    for(int i=0;i<100;i++){
+      temp=analogRead(Sensor);
+      temperatura=(((temp*5000.0)/1023)/10);
+      suma=temperatura+suma;
+      delay(100);
+    }
+    bt.print(suma/100.0,1);
+   }
+}

@@ -1,0 +1,20 @@
+int PIR = 7;
+int LED = 13;
+int pirDato;
+
+
+void setup() {
+  pinMode(PIR, INPUT);
+  pinMode(LED, OUTPUT);
+}
+
+void loop() {
+  pirDato = digitalRead(PIR);
+  if (pirDato == HIGH)
+  {
+    digitalWrite(LED, HIGH);
+  }
+  else 
+ 	digitalWrite(LED, LOW);   
+  delay(10);
+}
